@@ -54,15 +54,16 @@ def wish():
         speak(" Hello Sir! Good Afternoon")
     else:
         speak("Hello Sir! Good Evening ")
-    if __name__ == '__main__':
-        Thread(target = syst).start()
-        Thread(speak(greetings)).start()
 if __name__ == "__main__":
+    Thread(target=syst).start()
+    Thread(target=speak, args=(greetings,)).start()
     wish()
     while True:
         query = takecommand().lower()
+        if 'hey' in query:
+            wish()
 #This is the code to search from the wikipedia      
-        if 'search' in query:
+        elif 'search' in query:
                 speak('searching Internet...')
                 results = wikipedia.summary(query, sentences=2)
                 speak("According too sources")
